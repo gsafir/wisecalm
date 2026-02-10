@@ -13,16 +13,22 @@
 </head>
 <body>
   <div class="box">
-    <h2>WiseCalm v2 TEST 123</h2>
-    <input id="msg" placeholder="Опиши ситуацию" />
-    <button id="btn">НАЖМИ МЕНЯ 123</button>
-    <p id="reply"></p>
-  </div>
+  <h2>WiseCalm</h2>
+  <p>10 минут, чтобы навести ясность.</p>
+
+  <input id="msg" placeholder="Опиши ситуацию, которая тревожит">
+  <button id="btn">Начать</button>
+
+  <p id="reply"></p>
+</div>
 
   <script>
-    document.getElementById("btn").addEventListener("click", () => {
-      alert("clicked");
-    });
-  </script>
+  function send() {
+    const text = document.getElementById("msg").value || "";
+    alert("sending: " + text);
+  }
+
+  document.getElementById("btn").addEventListener("click", send);
+</script>
 </body>
 </html>
