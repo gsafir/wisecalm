@@ -1,62 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WiseCalm</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-      background: #f7f7f7;
-      padding: 40px;
-    }
-    .box {
-      max-width: 420px;
-      margin: auto;
-      background: #fff;
-      padding: 24px;
-      border-radius: 12px;
-    }
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 12px;
-      font-size: 16px;
-    }
-    button {
-      background: #111;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-    }
+    body { font-family: Arial, sans-serif; background:#f7f7f7; padding:40px; }
+    .box { max-width:420px; margin:auto; background:#fff; padding:24px; border-radius:12px; }
+    input, button { width:100%; padding:12px; margin-top:12px; font-size:16px; }
+    button { background:#111; color:#fff; border:0; border-radius:8px; cursor:pointer; position:relative; z-index:10; }
   </style>
 </head>
-
 <body>
   <div class="box">
-    <h2>WiseCalm</h2>
-    <p>10 минут, чтобы навести ясность.</p>
-
-    <input id="msg" placeholder="Опиши ситуацию, которая тревожит">
-    <button onclick="alert('clicked')">Начать</button>
-
+    <h2>WiseCalm v2 TEST 123</h2>
+    <input id="msg" placeholder="Опиши ситуацию" />
+    <button id="btn">НАЖМИ МЕНЯ 123</button>
     <p id="reply"></p>
   </div>
 
   <script>
-    async function send() {
-      const text = document.getElementById("msg").value;
-
-      const res = await fetch("http://65.109.170.215:5678/webhook-test/wisecalm", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text })
-      });
-
-      const data = await res.json();
-      document.getElementById("reply").innerText =
-        JSON.stringify(data);
-    }
+    document.getElementById("btn").addEventListener("click", () => {
+      alert("clicked");
+    });
   </script>
 </body>
 </html>
