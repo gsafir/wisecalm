@@ -26,14 +26,14 @@
   async function send() {
     const text = document.getElementById("msg").value || "";
 
-    const res = await fetch(
-      "https://count-jelsoft-measurement-juan.trycloudflare.com/webhook/wisecalm",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text })
-      }
-    );
+ const res = await fetch(
+  "https://count-jelsoft-measurement-juan.trycloudflare.com/webhook/wisecalm",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text })
+  }
+);
 
     const data = await res.json();
     document.getElementById("reply").innerText =
