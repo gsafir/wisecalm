@@ -36,8 +36,8 @@
 );
 
     const data = await res.json();
-    document.getElementById("reply").innerText =
-      data.reply || JSON.stringify(data);
+    document.getElementById("reply").innerText = data.reply || JSON.stringify(data);
+document.getElementById("msg").value = ""; // очистить поле
   }
 
   document.getElementById("btn").addEventListener("click", send);
