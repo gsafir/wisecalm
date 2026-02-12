@@ -35,9 +35,17 @@
   }
 );
 
-    const data = await res.json();
-    document.getElementById("reply").innerText = data.reply || JSON.stringify(data);
-document.getElementById("msg").value = ""; // очистить поле
+  const raw = await res.text();
+
+let data = {};
+try {
+  data = raw ? JSON.parse(raw) : {};
+} catch (e) {}
+
+document.getElementById("reply").innerText =
+  data.reply || raw || "EMPTY_RESPONSE";
+
+document.getElementById("msg").value = "";
   }
 
   document.getElementById("btn").addEventListener("click", send);
