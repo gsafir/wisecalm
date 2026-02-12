@@ -23,32 +23,37 @@
 </div>
 
   <script>
+  const btn = document.getElementById("btn");
+  const input = document.getElementById("msg");
+  const reply = document.getElementById("reply");
+
   async function send() {
-    const text = document.getElementById("msg").value || "";
+    try {
+      btn.disabled = true;
+      btn.textContent = "Отправляю...";
 
- const res = await fetch(
-  "https://count-jelsoft-measurement-juan.trycloudflare.com/webhook/wisecalm",
-  {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text })
+      const text = input.value || "";
+      const res = await fetch("https://count-jelsoft-measurement-juan.trycloudflare.com/webhook/wisecalm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text })
+      });
+
+      const raw = await res.text();
+      let data = {};
+      try { data = raw ? JSON.parse(raw) : {}; } catch (e) {}
+
+      reply.textContent = data.reply || raw || "EMPTY_RESPONSE";
+      input.value = "";
+    } catch (e) {
+      reply.textContent = "ERROR: " + (e?.message || e);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Начать";
+    }
   }
-);
 
-  const raw = await res.text();
-
-let data = {};
-try {
-  data = raw ? JSON.parse(raw) : {};
-} catch (e) {}
-
-document.getElementById("reply").innerText =
-  data.reply || raw || "EMPTY_RESPONSE";
-
-document.getElementById("msg").value = "";
-  }
-
-  document.getElementById("btn").addEventListener("click", send);
+  btn.addEventListener("click", send);
 </script>
 </body>
 </html>
